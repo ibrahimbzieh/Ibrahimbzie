@@ -1,3 +1,5 @@
+name: Run News Script and Send Webhook
+
 on:
   schedule:
     - cron: '0 21 * * *'  # الساعة 9 مساءً (بتوقيت UTC)
@@ -11,26 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
-        pip install googletrans==4.0.0-rc1  # تثبيت مكتبة googletrans
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          pip install googletrans==4.0.0-rc1
 
-    - name: Check Python Version and Installed Packages
-      run: |
-        python --version  # تحقق من إصدار Python
-        pip freeze  # تحقق من الحزم المثبتة
+      - name: Check Python Version and Installed Packages
+        run: |
+          python --version
+          pip freeze
 
-    - name: Run script
-      run: |
-        python news.py
-      continue-on-error: true  # تأكد من أن الأخطاء لا توقف العملية بشكل مفاجئ
+      - name: Run script
+        run: python news.py
+        continue-on-error: true  # سيستمر في حال حدوث خطأ
