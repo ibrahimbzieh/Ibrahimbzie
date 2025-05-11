@@ -1,14 +1,14 @@
 import requests
-import deepl
+from googletrans_new import googletrans
 
 # رابط Webhook الخاص بك
 webhook_url = "https://discord.com/api/webhooks/1360722144870273136/woduEJYO-1Bv9nH3Qgc7gPcTHtwmEK11i1XwPFMImX0KpwDa8CPc6SBzc5xaEsqTTqwe"
 
-# رابط API للأخبار باستخدام مفتاح API الذي ذكرته، مع تصفية الأخبار الاقتصادية والاجتماعية
+# رابط API للأخبار باستخدام مفتاح API الذي ذكرته، مع تصفية الأخبار الاقتصادية
 news_api_url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=7e15e3777ba4499e8e714456069a53a7"
 
-# تهيئة المترجم باستخدام مفتاح API الخاص بك
-translator = deepl.Translator("YOUR_DEEPL_API_KEY")  # استبدل "YOUR_DEEPL_API_KEY" بمفتاح API الفعلي من DeepL
+# تهيئة المترجم
+translator = googletrans.Translator()
 
 try:
     print("جلب الأخبار من NewsAPI...")
@@ -24,9 +24,9 @@ try:
             title = article["title"]
             description = article["description"] if article["description"] else "لا توجد تفاصيل إضافية."
 
-            # ترجمة العنوان والتفاصيل إلى العربية باستخدام DeepL
-            title_arabic = translator.translate_text(title, target_lang="AR")
-            description_arabic = translator.translate_text(description, target_lang="AR")
+            # ترجمة العنوان والتفاصيل إلى العربية
+            title_arabic = translator.translate(title, src='en', dest='ar').text
+            description_arabic = translator.translate(description, src='en', dest='ar').text
 
             news_message += f"العنوان: {title_arabic}\nالتفاصيل: {description_arabic[:150]}...\n\n"  # تلخيص التفاصيل لأقصى حد 150 حرفاً
         
