@@ -1,4 +1,5 @@
 name: Send news to Discord
+
 on:
   schedule:
     - cron: '0 21 * * *'  # الساعة 9 مساءً (بتوقيت UTC)
@@ -24,7 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests
-        pip install googletrans-new==1.1.9  # تأكد من تثبيت googletrans-new
+        pip install googletrans-new==1.1.9  # تثبيت مكتبة googletrans-new
 
     - name: Run script
-      run: python news.py
+      run: python news.py  # تأكد أن السكربت اسمه news.py
