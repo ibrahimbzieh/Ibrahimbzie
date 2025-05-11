@@ -11,6 +11,7 @@ news_api_url = "https://newsapi.org/v2/top-headlines?country=us&category=busines
 translator = Translator()
 
 try:
+    print("جلب الأخبار من NewsAPI...")
     # الحصول على الأخبار
     response = requests.get(news_api_url)
     if response.status_code == 200:
@@ -30,6 +31,7 @@ try:
             news_message += f"العنوان: {title_arabic}\nالتفاصيل: {description_arabic[:150]}...\n\n"  # تلخيص التفاصيل لأقصى حد 150 حرفاً
         
         # إرسال الأخبار إلى ديسكورد عبر Webhook
+        print("إرسال الأخبار إلى ديسكورد...")
         data = {
             "content": f"أخبار اليوم:\n{news_message}"
         }
