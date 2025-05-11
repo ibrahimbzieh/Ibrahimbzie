@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
           pip install googletrans==1.1.9
-
+          from googletrans_new import googletrans
       - name: Check Python Version and Installed Packages
         run: |
           python --version
