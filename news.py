@@ -18,7 +18,7 @@ if response.status_code == 200:
     for article in articles[:5]:  # يمكن تحديد عدد المقالات
         title = article["title"]
         url = article["url"]
-        news_message += f"{title}\n{url}\n\n"
+        news_message += f"العنوان: {title}\nالرابط: {url}\n\n"
     
     # إرسال الأخبار إلى ديسكورد عبر Webhook
     data = {
