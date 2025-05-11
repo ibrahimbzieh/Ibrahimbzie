@@ -1,5 +1,4 @@
-name: Run News Script and Send Webhook
-
+name: Send news to Discord
 on:
   schedule:
     - cron: '0 21 * * *'  # الساعة 9 مساءً (بتوقيت UTC)
@@ -13,25 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-          pip install googletrans==1.1.9
-          from googletrans_new import googletrans
-      - name: Check Python Version and Installed Packages
-        run: |
-          python --version
-          pip freeze
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        pip install deepl
 
-      - name: Run script
-        run: python news.py
-        continue-on-error: true  # سيستمر في حال حدوث خطأ
+    - name: Run script
+      run: python news.py
