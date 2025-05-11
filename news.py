@@ -4,8 +4,8 @@ import json
 # رابط Webhook الخاص بك
 webhook_url = "https://discord.com/api/webhooks/1360722144870273136/woduEJYO-1Bv9nH3Qgc7gPcTHtwmEK11i1XwPFMImX0KpwDa8CPc6SBzc5xaEsqTTqwe"
 
-# رابط API للأخبار باستخدام مفتاح API الذي ذكرته
-news_api_url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=7e15e3777ba4499e8e714456069a53a7"
+# رابط API للأخبار باستخدام مفتاح API الذي ذكرته، مع تصفية الأخبار الاقتصادية والاجتماعية
+news_api_url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=7e15e3777ba4499e8e714456069a53a7"
 
 # الحصول على الأخبار
 response = requests.get(news_api_url)
@@ -15,10 +15,10 @@ if response.status_code == 200:
 
     # جمع الأخبار التي سيتم إرسالها
     news_message = ""
-    for article in articles[:5]:  # يمكن تحديد عدد المقالات
+    for article in articles[:5]:  # إرسال أول 5 مقالات فقط
         title = article["title"]
-        url = article["url"]
-        news_message += f"العنوان: {title}\nالرابط: {url}\n\n"
+        description = article["description"] if article["description"] else "لا توجد تفاصيل إضافية."
+        news_message += f"العنوان: {title}\nالتفاصيل: {description[:150]}...\n\n"  # تلخيص التفاصيل لأقصى حد 150 حرفاً
     
     # إرسال الأخبار إلى ديسكورد عبر Webhook
     data = {
