@@ -25,7 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-          pip install googletrans==4.0.0-rc1
+          pip install googletrans==1.1.9
 
       - name: Check Python Version and Installed Packages
         run: |
