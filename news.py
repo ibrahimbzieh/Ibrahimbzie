@@ -1,8 +1,7 @@
 import requests
 
 # رابط الويب هوك الجديد
-webhook_url = "https://discord.com/api/webhooks/1360722144870273136/woduEJYO-1Bv9nH3Qgc7gPcTHtwmEK11i1XwPFMImX0KpwDa8CPc6SBzc5xaEsqTTqwe"
-
+webhook_url = "https://discord.com/api/webhooks/1360722144870273136/woduEJYO-1Bv9nH3Qgc7gPcTHtwmEK11i1XwPFMImX0KpwDa8CPc6SBzc5xaEsqTTqw"
 # بيانات الرسالة التي تريد إرسالها
 data = {
     "content": "هذه رسالة من السكربت! 🚨"
