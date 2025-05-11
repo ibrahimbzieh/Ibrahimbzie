@@ -1,5 +1,3 @@
-name: Send Discord Webhook
-
 on:
   schedule:
     - cron: '0 21 * * *'  # الساعة 9 مساءً (بتوقيت UTC)
